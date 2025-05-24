@@ -1,16 +1,9 @@
 document.addEventListener("DOMContentLoaded", () => {
-
-  AOS.init({
-    duration: 800,
-    once: true
-  });
+  AOS.init({ duration: 800, once: true });
 
   new Swiper('.testimonial-swiper', {
     loop: true,
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true
-    }
+    pagination: { el: '.swiper-pagination', clickable: true }
   });
 
   let userInteracted = false;
@@ -25,25 +18,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const cursorTrail = document.getElementById("cursor-trail");
   const sceneDay = document.getElementById("sceneDay");
   const sceneNight = document.getElementById("sceneNight");
+
+  // 📱 Mobile Menu Toggle
   const menuBtn = document.getElementById("mobileMenuBtn");
-const menuPanel = document.getElementById("mobileMenuPanel");
-const closeMenu = document.getElementById("closeMenu");
+  const menuPanel = document.getElementById("mobileMenuPanel");
+  const closeMenu = document.getElementById("closeMenu");
 
-menuBtn?.addEventListener("click", () => {
-  menuPanel?.classList.remove("translate-x-full")
-  menuPanel?.classList.remove("hidden");
-});
+  menuBtn?.addEventListener("click", () => {
+    menuPanel?.classList.remove("hidden");
+  });
 
-closeMenu?.addEventListener("click", () => {
-  menuPanel?.classList.remove("translate-x-full")
+  closeMenu?.addEventListener("click", () => {
+    menuPanel?.classList.add("hidden");
+  });
 
-});
-
-
-  // 🌗 Theme toggle click (works for multiple toggles)
-  ["themeToggleUniversal", "themeToggleMobile", "themeToggleNav"].forEach(id => {
-    const toggle = document.getElementById(id);
-    toggle?.addEventListener("click", () => {
+  // 🌗 Theme Toggle Buttons
+  ["themeToggleUniversal", "themeToggleMobile", "themeTogglePanel"].forEach(id => {
+    document.getElementById(id)?.addEventListener("click", () => {
       const isDark = htmlEl.classList.contains("dark");
       applyTheme(!isDark);
     });
@@ -64,6 +55,7 @@ closeMenu?.addEventListener("click", () => {
       (dark ? audioNight : audioDay).play().catch(() => {});
     }
 
+    // Update thumb positions
     document.querySelectorAll('.toggle-thumb').forEach(thumb => {
       thumb.style.left = dark ? "33px" : "3px";
     });
@@ -78,38 +70,38 @@ closeMenu?.addEventListener("click", () => {
 
   initTheme();
 
-function handleUserInteraction() {
-  console.log("🔊 handleUserInteraction fired!");
+  // 🔊 Play audio on first interaction
+  function handleUserInteraction() {
+    if (!userInteracted) {
+      userInteracted = true;
 
-  if (!userInteracted) {
-    userInteracted = true;
+      const isDark = htmlEl.classList.contains("dark");
+      const audio = isDark ? audioNight : audioDay;
 
-    const isDark = document.documentElement.classList.contains("dark");
-    const audio = isDark ? audioNight : audioDay;
+      audio.play()
+        .then(() => {
+          audio.pause();
+          audio.currentTime = 0;
+          if (isPlaying) audio.play().catch(() => {});
+        })
+        .catch(err => {
+          console.warn("⚠️ Audio blocked by browser", err);
+        });
 
-    audio.play()
-      .then(() => {
-        audio.pause();
-        audio.currentTime = 0;
-        if (isPlaying) audio.play().catch(() => {});
-      })
-      .catch(err => {
-        console.warn("⚠️ Audio blocked by browser", err);
-      });
-
-    document.removeEventListener("click", handleUserInteraction);
-    document.removeEventListener("touchstart", handleUserInteraction);
+      document.removeEventListener("click", handleUserInteraction);
+      document.removeEventListener("touchstart", handleUserInteraction);
+    }
   }
-}
 
-
+  document.addEventListener("click", handleUserInteraction);
+  document.addEventListener("touchstart", handleUserInteraction);
 
   // 🔇 Mute Toggle
   muteBtn?.addEventListener("click", () => {
     isPlaying = !isPlaying;
     audioDay.pause();
     audioNight.pause();
-    visualizer.classList.toggle("paused", !isPlaying);
+    visualizer?.classList.toggle("paused", !isPlaying);
     muteBtn.textContent = isPlaying ? "🔊" : "🔇";
 
     if (isPlaying && userInteracted) {
@@ -142,7 +134,7 @@ function handleUserInteraction() {
     cursorTrail?.remove();
   }
 
-  // 📊 Scroll Bar Progress
+  // 📊 Scroll Progress Bar
   function updateScrollBar() {
     const scrollBar = document.getElementById("scroll-bar");
     if (!scrollBar) return;
@@ -151,16 +143,6 @@ function handleUserInteraction() {
     const docHeight = document.body.scrollHeight - window.innerHeight;
     const scrolled = (scrollTop / docHeight) * 100;
     scrollBar.style.width = `${scrolled}%`;
-
-    if (!htmlEl.classList.contains("dark")) {
-      scrollBar.style.background = scrolled > 75 ? "#10b981" :
-                                   scrolled > 50 ? "#f59e0b" :
-                                   "var(--accent-day)";
-    } else {
-      scrollBar.style.background = "";
-      scrollBar.style.boxShadow = "";
-    }
-
     requestAnimationFrame(updateScrollBar);
   }
   requestAnimationFrame(updateScrollBar);
@@ -168,12 +150,12 @@ function handleUserInteraction() {
   // 🪟 Mac Popups
   window.openService = function (id) {
     const win = document.getElementById(`service-window-${id}`);
-    if (win) win.classList.remove("hidden");
+    win?.classList.remove("hidden");
   };
 
   window.closeWindow = function (id) {
     const win = document.getElementById(`service-window-${id}`);
-    if (win) win.classList.add("hidden");
+    win?.classList.add("hidden");
   };
 
   window.minimizeWindow = function (id) {
@@ -185,17 +167,4 @@ function handleUserInteraction() {
         'translate(-50%, -50%)';
     }
   };
-
-  // 📱 Mobile Nav Toggle
-  document.getElementById('mobileMenu')?.addEventListener('click', () => {
-    document.getElementById('mobileNav')?.classList.toggle('translate-x-full');
-  });
-
-
-  document.addEventListener("click", handleUserInteraction);
-  document.addEventListener("touchstart", handleUserInteraction);
-
 });
-
-
-
