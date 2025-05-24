@@ -138,9 +138,20 @@
 
 
       </div>
-      <button id="mobileMenu" class="md:hidden text-accent" aria-label="Toggle menu">☰</button>
+    <button id="mobileMenuBtn" class="md:hidden w-10 h-10 flex items-center justify-center bg-white/20 dark:bg-darkAccent/40 rounded-full shadow-lg">
+  <span class="text-2xl">☰</span>
+</button>
+
 
     </nav>
+    <div id="mobileMenuPanel" class="md:hidden fixed top-0 right-0 h-full w-2/3 bg-white/80 dark:bg-darkBg/80 backdrop-blur-lg z-40 hidden flex-col p-6 space-y-4">
+  <button id="closeMenu" class="self-end text-2xl">✕</button>
+  <a href="#services" class="block">Services</a>
+  <a href="#portfolio" class="block">Work</a>
+  <a href="#contact" class="block">Contact</a>
+  <div id="themeToggleUniversal" class="theme-slider cursor-pointer"></div>
+</div>
+
   </header>
 
   <!-- Mobile nav -->

@@ -25,6 +25,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const cursorTrail = document.getElementById("cursor-trail");
   const sceneDay = document.getElementById("sceneDay");
   const sceneNight = document.getElementById("sceneNight");
+  const menuBtn = document.getElementById("mobileMenuBtn");
+const menuPanel = document.getElementById("mobileMenuPanel");
+const closeMenu = document.getElementById("closeMenu");
+
+menuBtn?.addEventListener("click", () => {
+  menuPanel?.classList.remove("hidden");
+});
+
+closeMenu?.addEventListener("click", () => {
+  menuPanel?.classList.add("hidden");
+});
+
 
   // 🌗 Theme toggle click (works for multiple toggles)
   ["themeToggleUniversal", "themeToggleMobile", "themeToggleNav"].forEach(id => {
