@@ -30,11 +30,13 @@ const menuPanel = document.getElementById("mobileMenuPanel");
 const closeMenu = document.getElementById("closeMenu");
 
 menuBtn?.addEventListener("click", () => {
+  menuPanel?.classList.remove("translate-x-full")
   menuPanel?.classList.remove("hidden");
 });
 
 closeMenu?.addEventListener("click", () => {
-  menuPanel?.classList.add("hidden");
+  menuPanel?.classList.remove("translate-x-full")
+
 });
 
 

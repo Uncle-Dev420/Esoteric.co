@@ -118,18 +118,7 @@
   </div>
 </div>
 
-<!-- Mobile Toggle -->
-<div class="block md:hidden mt-4">
-  <div id="themeToggleMobile" class="theme-slider cursor-pointer">
-    <div class="toggle-track">
-      <svg id="iconSunUniversal" class="icon sun hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
-        <path fill="currentColor" d="M12 4V2M12 22v-2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2m16 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-      </svg>
-      <svg id="iconMoonUniversal" class="icon moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
-        <path fill="currentColor" d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1-8.313-12.454z"/>
-      </svg>
-      <div class="toggle-thumb"></div>
-    </div>
+
   </div>
 </div>
 
@@ -144,6 +133,20 @@
 
 
     </nav>
+
+    <!-- Mobile Toggle -->
+<div class="block md:hidden mt-4">
+  <div id="themeToggleMobile" class="theme-slider cursor-pointer">
+    <div class="toggle-track">
+      <svg id="iconSunUniversal" class="icon sun hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M12 4V2M12 22v-2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2m16 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+      </svg>
+      <svg id="iconMoonUniversal" class="icon moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1-8.313-12.454z"/>
+      </svg>
+      <div class="toggle-thumb"></div>
+    </div>
+    
     <div id="mobileMenuPanel" class="md:hidden fixed top-0 right-0 h-full w-2/3 bg-white/80 dark:bg-darkBg/80 backdrop-blur-lg z-40 hidden flex-col p-6 space-y-4">
   <button id="closeMenu" class="self-end text-2xl">✕</button>
   <a href="#services" class="block">Services</a>
@@ -204,7 +207,7 @@
   <button onclick="openService('DM')" class="px-4 py-2 bg-accent text-black rounded-full font-semibold shadow hover:bg-accent/90 transition">
     Take a Look
   </button>
-</div>
+  </div>
 
         <div class="glass-card max-w-md mx-auto my-6 p-6" data-aos="fade-up" data-aos-delay="200">
           <h3 class="text-xl font-bold mb-3 text-accent">Web Development</h3>
