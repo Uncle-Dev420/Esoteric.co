@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Esoteric.co | Building Brands for the Digital Age</title>
+
+  <!-- Tailwind (CDN, dev mode only) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            bg: 'var(--color-bg)',
+            accent: 'var(--color-accent)',
+            surface: 'var(--color-surface)',
+            lightAccent: 'var(--color-light-accent)',
+            violet: 'var(--color-violet)',
+            darkBg: 'var(--bg-night)',
+            darkAccent: 'var(--accent-night)'
+          }
+        }
+      }
+    };
+  </script>
+
+  <!-- AOS & Particles -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@3.3.0/tsparticles.bundle.min.js"></script>
+
+  <!-- Your compiled Tailwind output -->
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+</head>
+
+<body class="font-sans">
+
+  <div id="scroll-bar" class="scroll-progress-bar"></div>
+  <div id="custom-cursor"></div>
+  <div id="cursor-trail"></div>
+
+
+  <!-- Hero Visual Layer -->
+<div id="sprite-layer" class="pointer-events-none fixed top-0 left-0 w-full h-[100vh] z-30 overflow-hidden"></div>
+
+<!-- Hero Particle Area (wave effect) -->
+<div id="hero-particles" class="fixed top-0 left-0 w-full h-[100vh] z-20 pointer-events-none"></div>
+
+  <!-- Hidden SVG icons -->
+  <svg xmlns="http://www.w3.org/2000/svg" class="hidden">
+    <symbol id="iconSun" viewBox="0 0 24 24" fill="currentColor">
+     <path d="M12 4V2M12 22v-2M4.22 4.22l-1.42-1.42M20.48 20.48l-1.42-1.42M2 12H4m16 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42M12 8a4 4 0 1 0 0 8a4 4 0 0 0 0-8Z" />
+    </symbol>
+    <symbol id="iconMoon" viewBox="0 0 24 24" fill="currentColor">
+      <path d="M21 12.79A9 9 0 0 1 11.21 3A7 7 0 1 0 21 12.79Z"/>
+    </symbol>
+  </svg>
+
+  <!-- Video Backgrounds -->
+  <div id="sceneDay" class="scene">
+    <video
+  autoplay
+  muted
+  loop
+  playsinline
+  preload="auto"
+  class="video-bg"
+>
+  <source src="assets/day.mp4" type="video/mp4" />
+</video>
+
+  </div>
+  <div id="sceneNight" class="scene hidden">
+    <video autoplay muted loop playsinline class="video-bg">
+      <source src="assets/night.mp4" type="video/mp4" />
+    </video>
+  </div>
+
+  <!-- Header with logo and theme toggle -->
+<header class="fixed top-0 w-full bg-surface/80 dark:bg-darkAccent/60 backdrop-blur border-b border-lightAccent/40 dark:border-violet/50 z-50">
+  <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
+    <!-- Logo Group -->
+    <div class="flex items-center gap-4">
+      <div class="w-20 h-20"> <!-- Reduced size -->
+        <img src="assets/white logo.png" alt="Logo" 
+             class="w-full h-full object-contain dark:hidden" />
+        <img src="assets/white logo.png" alt="Logo Dark" 
+             class="w-full h-full object-contain hidden dark:inline" />
+      </div>
+      <span class="text-2xl font-bold text-accent">Esoteric.co</span>
+    </div>
+
+    <!-- Desktop Nav Links -->
+    <div class="hidden md:flex items-center gap-8 font-medium">
+      <a href="#services" class="text-accent hover:opacity-80 transition">Services</a>
+      <a href="#portfolio" class="text-accent hover:opacity-80 transition">Work</a>
+      <a href="#contact" class="text-accent hover:opacity-80 transition">Contact</a>
+      <button class="bg-accent text-black px-6 py-2 rounded-full hover:opacity-90">
+        Get Started
+      </button>
+
+<!-- Desktop Toggle -->
+<div class="hidden md:block">
+  <div id="themeToggleUniversal" class="theme-slider cursor-pointer">
+    <div class="toggle-track">
+      <svg id="iconSunUniversal" class="icon sun hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M12 4V2M12 22v-2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2m16 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+      </svg>
+      <svg id="iconMoonUniversal" class="icon moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1-8.313-12.454z"/>
+      </svg>
+      <div class="toggle-thumb"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Mobile Toggle -->
+<div class="block md:hidden mt-4">
+  <div id="themeToggleMobile" class="theme-slider cursor-pointer">
+    <div class="toggle-track">
+      <svg id="iconSunUniversal" class="icon sun hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M12 4V2M12 22v-2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2m16 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+      </svg>
+      <svg id="iconMoonUniversal" class="icon moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1-8.313-12.454z"/>
+      </svg>
+      <div class="toggle-thumb"></div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+      </div>
+      <button id="mobileMenu" class="md:hidden text-accent" aria-label="Toggle menu">☰</button>
+
+    </nav>
+  </header>
+
+  <!-- Mobile nav -->
+  <div id="themeToggleNav" class="fixed top-0 right-0 h-screen w-64 bg-surface dark:bg-darkAccent shadow-lg p-6 transform translate-x-full transition-transform duration-300 z-40">
+    <div class="flex flex-col space-y-6 text-accent text-lg">
+      <a href="#services">Services</a>
+      <a href="#portfolio">Work</a>
+      <a href="#contact">Contact</a>
+
+
+      <button class="bg-accent text-black px-6 py-2 rounded-full mt-4 hover:opacity-90">Get Started</button>
+    </div>
+  </div>
+
+<!-- Hero Section -->
+<section class="min-h-screen flex flex-col justify-center items-center text-center px-6 bg-bg dark:bg-darkBg" data-aos="fade-up">
+  <!-- Logo above headline -->
+<div class="w-32 sm:w-40 md:w-48 lg:w-56 h-auto mb-6 animate-fade-in-slow">
+  <img src="assets/logo.png" alt="Esoteric Light Logo" class="w-full dark:hidden">
+  <img src="assets/white logo.png" alt="Esoteric Dark Logo" class="w-full hidden dark:block">
+</div>
+
+
+  <!-- Headline -->
+  <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6 max-w-3xl">
+    Building Brands<br>For the Digital Age.
+  </h1>
+
+  <!-- Subtitle -->
+  <p class="text-lg text-accent font-semibold tracking-tight max-w-xl mb-8">
+    We craft powerful digital experiences for forward‑thinking brands.
+  </p>
+
+  <!-- CTA Button -->
+  <a href="#services" class="px-6 py-3 bg-accent text-black font-semibold rounded-full shadow-md hover:bg-accent/90 transition-all duration-200">
+    Explore Services
+  </a>
+</section>
+
+
+  <!-- Services Section -->
+  <section id="services" class="py-20 px-6 bg-surface dark:bg-darkAccent/60">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl font-bold text-center mb-16" data-aos="fade-up">Our Services</h2>
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+        <div class="glass-card max-w-md mx-auto my-6 p-6" data-aos="fade-up" data-aos-delay="200">
+  <h3 class="text-xl font-bold text-accent mb-2">Digital Marketing</h3>
+  <p class="opacity-80">Amplify your online presence with our data-driven digital marketing strategies.</p>
+  <button onclick="openService('DM')" class="px-4 py-2 bg-accent text-black rounded-full font-semibold shadow hover:bg-accent/90 transition">
+    Take a Look
+  </button>
+</div>
+
+        <div class="glass-card max-w-md mx-auto my-6 p-6" data-aos="fade-up" data-aos-delay="200">
+          <h3 class="text-xl font-bold mb-3 text-accent">Web Development</h3>
+          <p class="opacity-80">Build responsive and user-friendly websites that drive engagement and conversions.</p>
+          <button onclick="openService('WD')" class="px-4 py-2 bg-accent text-black rounded-full font-semibold shadow hover:bg-accent/90 transition">
+    Take a Look
+  </button>
+        </div>
+        <div class="glass-card max-w-md mx-auto my-6 p-6" data-aos="fade-up" data-aos-delay="200">
+            <h3 class="text-xl font-bold mb-3 text-accent">Search Engine Optimization (SEO)</h3>
+          <p class="opacity-80">Enhance your website's visibility and attract organic traffic with our expert SEO services.</p>
+          <button onclick="openService('SEO')" class="px-4 py-2 bg-accent text-black rounded-full font-semibold shadow hover:bg-accent/90 transition">
+    Take a Look
+  </button>
+        </div>
+        <div class="glass-card max-w-md mx-auto my-6 p-6" data-aos="fade-up" data-aos-delay="200">          
+            <h3 class="text-xl font-bold mb-3 text-accent">Advertising</h3>
+          <p class="opacity-80">Reach your target audience effectively through strategic online advertising campaigns.</p>
+          <button onclick="openService('ADV')" class="px-4 py-2 bg-accent text-black rounded-full font-semibold shadow hover:bg-accent/90 transition">
+    Take a Look
+  </button>
+        </div>
+         <div class="glass-card max-w-md mx-auto my-6 p-6" data-aos="fade-up" data-aos-delay="200">          
+          <h3 class="text-xl font-bold mb-3 text-accent">Branding</h3>
+          <p class="opacity-80">Establish a strong and memorable brand identity that resonates with your audience.</p>
+          <button onclick="openService('Branding')" class="px-4 py-2 bg-accent text-black rounded-full font-semibold shadow hover:bg-accent/90 transition">
+    Take a Look
+  </button>
+        </div>
+        <div class="glass-card max-w-md mx-auto my-6 p-6" data-aos="fade-up" data-aos-delay="200">          
+          <h3 class="text-xl font-bold mb-3 text-accent">AI and Automation Solutions</h3>
+          <p class="opacity-80">Optimize your business operations with cutting-edge AI and automation technologies.</p>
+          <button onclick="openService('DS')" class="px-4 py-2 bg-accent text-black rounded-full font-semibold shadow hover:bg-accent/90 transition">
+    Take a Look
+  </button>
+        </div>
+                 <div class="glass-card max-w-md mx-auto my-6 p-6" data-aos="fade-up" data-aos-delay="200">          
+          <h3 class="text-xl font-bold mb-3 text-accent">App Development</h3>
+          <p class="opacity-80">Transform your ideas into functional and engaging mobile applications.</p>
+          <button onclick="openService('AD')" class="px-4 py-2 bg-accent text-black rounded-full font-semibold shadow hover:bg-accent/90 transition">
+    Take a Look
+  </button>
+        </div>
+                 <div class="glass-card max-w-md mx-auto my-6 p-6" data-aos="fade-up" data-aos-delay="200">          
+          <h3 class="text-xl font-bold mb-3 text-accent">Social Media Management</h3>
+          <p class="opacity-80">Engage your audience and grow your online community with our social media expertise.</p>
+          <button onclick="openService('SMH')" class="px-4 py-2 bg-accent text-black rounded-full font-semibold shadow hover:bg-accent/90 transition">
+    Take a Look
+  </button>
+        </div>
+                 <div class="glass-card max-w-md mx-auto my-6 p-6" data-aos="fade-up" data-aos-delay="200">          
+          <h3 class="text-xl font-bold mb-3 text-accent">Lead Generation and Content Marketing</h3>
+          <p class="opacity-80">Attract and convert prospects with high-quality content and targeted lead generation strategies.</p>
+          <button onclick="openService('LAC')" class="px-4 py-2 bg-accent text-black rounded-full font-semibold shadow hover:bg-accent/90 transition">
+    Take a Look
+  </button>
+        </div>
+      </div>
+    </div>
+  </section>
+<section id="portfolio" class="py-20 px-6 glass-card overflow-hidden">
+  <h2 class="text-4xl font-bold text-center mb-16" data-aos="fade-up">Our Clients</h2>
+
+  <div class="belt-wrapper relative w-full overflow-hidden">
+    <div class="belt-track flex whitespace-nowrap">
+      <!-- Clickable glass-card links -->
+      <a href="https://www.peaktrailtoursandtravels.com/" target="_blank" class="glass-card belt-item">
+        <img src="assets/Peaktrail.png" alt="Peaktrail" class="h-20 object-contain" />
+      </a>
+      <a href="https://tcity.com.np/" target="_blank" class="glass-card belt-item">
+        <img src="assets/tcity.png" alt="T City" class="h-20 object-contain" />
+      </a>
+      <a href="#" target="_blank" class="glass-card belt-item">
+        <img src="assets/ajitos.png" alt="Ajitos" class="h-20 object-contain" />
+      </a>
+      <a href="https://www.hotelamagarden.com/" target="_blank" class="glass-card belt-item">
+        <img src="assets/HAG.png" alt="HAG" class="h-20 object-contain" />
+      </a>
+      <a href="#" target="_blank" class="glass-card belt-item">
+        <img src="assets/healandpure.png" alt="Heal and Pure" class="h-20 object-contain" />
+      </a>
+
+      <!-- Duplicate for seamless loop -->
+      <a href="https://www.peaktrailtoursandtravels.com/" target="_blank" class="glass-card belt-item">
+        <img src="assets/Peaktrail.png" alt="Peaktrail" class="h-20 object-contain" />
+      </a>
+      <a href="https://tcity.com.np/" target="_blank" class="glass-card belt-item">
+        <img src="assets/tcity.png" alt="T City" class="h-20 object-contain" />
+      </a>
+      <a href="#" target="_blank" class="glass-card belt-item">
+        <img src="assets/ajitos.png" alt="Ajitos" class="h-20 object-contain" />
+      </a>
+      <a href="https://www.hotelamagarden.com/" target="_blank" class="glass-card belt-item">
+        <img src="assets/HAG.png" alt="HAG" class="h-20 object-contain" />
+      </a>
+      <a href="#" target="_blank" class="glass-card belt-item">
+        <img src="assets/healandpure.png" alt="Heal and Pure" class="h-20 object-contain" />
+      </a>
+    </div>
+  </div>
+</section>
+
+
+
+  <!-- Reviews Section -->
+<section class="my-20 px-6 max-w-4xl mx-auto text-center">
+  <h2 class="text-3xl font-bold mb-6">What Our Clients Say</h2>
+
+  <div class="swiper testimonial-swiper">
+    <div class="swiper-wrapper">
+      <!-- Slide 1 -->
+      <div class="swiper-slide p-6 glass-card">
+        <p class="text-lg italic">"Working with Esoteric.co on our new website has been a game-changer for Peak Trail Tours and Travels. They didn't just build a website; they crafted a digital experience that perfectly showcases our tours and services. Their team, under the excellent guidance of owner Dipan Adhikari, was incredibly collaborative, understanding our needs and translating our vision into a stunning, functional platform. The new site is already attracting more inquiries and has significantly enhanced our online presence. We're immensely grateful for their technical prowess and dedication. Thank you, Esoteric.co, and especially Dipan!"</p>
+        <h4 class="mt-4 font-semibold text-accent">— Subash K.C., CEO @peaktrailtoursandtravels</h4>
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="swiper-slide p-6 glass-card">
+        <p class="text-lg italic">"From branding to launch, this team nailed every detail."</p>
+        <h4 class="mt-4 font-semibold text-accent">— Priya M., Product Manager</h4>
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="swiper-slide p-6 glass-card">
+        <p class="text-lg italic">"Their aesthetic sense is unmatched. Our customers noticed instantly."</p>
+        <h4 class="mt-4 font-semibold text-accent">— Alex G., Founder</h4>
+      </div>
+    </div>
+
+    <!-- Optional Pagination -->
+    <div class="swiper-pagination mt-6"></div>
+  </div>
+</section>
+
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 px-6 bg-surface dark:bg-darkAccent/60">
+    <div class="max-w-xl mx-auto">
+      <h2 class="text-4xl font-bold text-center mb-12" data-aos="fade-up">Get Started</h2>
+      <form action="#" method="POST" class="space-y-6" data-aos="fade-up">
+        <input type="text" name="name" placeholder="Name" required class="w-full p-4 bg-bg dark:bg-darkBg rounded-lg border border-accent/30 focus:ring-accent/60 focus:outline-none">
+        <input type="email" name="email" placeholder="Email" required class="w-full p-4 bg-bg dark:bg-darkBg rounded-lg border border-accent/30 focus:ring-accent/60 focus:outline-none">
+        <select name="service" class="w-full p-4 bg-bg dark:bg-darkBg rounded-lg border border-accent/30 focus:ring-accent/60 focus:outline-none">
+          <option>Select Service</option>
+          <option>Web Development</option>
+          <option>Digital Marketing</option>
+          <option>SEO</option>
+          <option>Advertising</option>
+        </select>
+        <textarea name="message" rows="5" placeholder="Message" class="w-full p-4 bg-bg dark:bg-darkBg rounded-lg border border-accent/30 focus:ring-accent/60 focus:outline-none"></textarea>
+        <button type="submit" class="w-full bg-accent text-black py-4 rounded-lg hover:opacity-90 transition-all">
+          Send Message
+        </button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-bg dark:bg-black py-12 text-center border-t border-lightAccent/30 dark:border-violet/40">
+    <div class="max-w-4xl mx-auto">
+      <p class="mb-8 text-accent">© 2025 Esoteric.co • Building Brands For the Digital Age.</p>
+      <div class="flex justify-center gap-6">
+        <a href="https://www.facebook.com/profile.php?id=61576399082496" class="text-accent hover:opacity-80 transition">Facebook</a>
+        <a href="https://www.instagram.com/ig_esoteric.co/?__pwa=1" class="text-accent hover:opacity-80 transition">Instagram</a>
+        <a href="https://wa.me/9779825108626" class="text-accent hover:opacity-80 transition">WhatsApp</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Include app.js for theme switching and animations -->
+  <script src="app.js"></script>
+<audio id="audioDay" src="assets/day.mp3" loop></audio>
+<audio id="audioNight" src="assets/night.mp3" loop></audio>
+
+<!-- Audio Control Button with Visualizer -->
+<div id="audioControl" class="audio-control">
+  <button id="muteToggle" aria-label="Toggle Sound">🔊</button>
+  <div class="visualizer">
+    <span></span><span></span><span></span>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- MAC SERVICE POPUPS -->
+
+<div id="service-window-DM" class="mac-window hidden">
+  <div class="mac-header">
+    <div class="flex gap-2 items-center">
+      <span class="mac-btn mac-red" onclick="closeWindow('DM')"></span>
+      <span class="mac-btn mac-yellow" onclick="minimizeWindow('DM')"></span>
+      <span class="mac-btn mac-green"></span>
+    </div>
+    <span class="title ml-4 text-sm font-medium text-white">Digital Marketing</span>
+  </div>
+  <div class="mac-content">
+    <p>At Esoteric.Co, we specialize in crafting comprehensive digital marketing campaigns that encompass SEO, PPC, email marketing, and content creation. Our approach ensures your brand reaches the right audience at the right time. By leveraging data analytics and market research, we tailor strategies that resonate with your target demographic, driving engagement and conversions. <br>Benefits: <br>Increased brand visibility <br>Higher conversion rates <br>Measurable ROI</p>
+    <button class="mt-6 bg-accent text-black px-4 py-2 rounded shadow">Book Now</button>
+  </div>
+</div>
+
+<div id="service-window-WD" class="mac-window hidden">
+  <div class="mac-header">
+    <div class="flex gap-2 items-center">
+      <span class="mac-btn mac-red" onclick="closeWindow('WD')"></span>
+      <span class="mac-btn mac-yellow" onclick="minimizeWindow('WD')"></span>
+      <span class="mac-btn mac-green"></span>
+    </div>
+    <span class="title ml-4 text-sm font-medium text-white">Web Development</span>
+  </div>
+  <div class="mac-content">
+    <p>Our web development team specializes in creating custom websites using the latest technologies. We focus on performance, scalability, and seamless user experiences to ensure your site stands out. From e-commerce platforms to corporate websites, we deliver solutions that align with your business objectives.<br>Benefits:<br>Optimized for all devices<br>Fast loading times<br>Easy content management.</p>
+    <button class="mt-6 bg-accent text-black px-4 py-2 rounded shadow">Book Now</button>
+  </div>
+</div>
+
+<div id="service-window-SEO" class="mac-window hidden">
+  <div class="mac-header">
+    <div class="flex gap-2 items-center">
+      <span class="mac-btn mac-red" onclick="closeWindow('SEO')"></span>
+      <span class="mac-btn mac-yellow" onclick="minimizeWindow('SEO')"></span>
+      <span class="mac-btn mac-green"></span>
+    </div>
+    <span class="title ml-4 text-sm font-medium text-white"> Search Engine Optimization (SEO)</span>
+  </div>
+  <div class="mac-content">
+    <p>We implement comprehensive SEO strategies, including keyword research, on-page optimization, and link building, to improve your search engine rankings and drive targeted traffic. Our team stays updated with the latest algorithm changes to ensure your website remains competitive in search results.<br>Benefits:<br>Higher search rankings<br>Increased website traffic<br>Improved user experience.</p>
+    <button class="mt-6 bg-accent text-black px-4 py-2 rounded shadow">Book Now</button>
+  </div>
+</div>
+
+<div id="service-window-ADV" class="mac-window hidden">
+  <div class="mac-header">
+    <div class="flex gap-2 items-center">
+      <span class="mac-btn mac-red" onclick="closeWindow('ADV')"></span>
+      <span class="mac-btn mac-yellow" onclick="minimizeWindow('ADV')"></span>
+      <span class="mac-btn mac-green"></span>
+    </div>
+    <span class="title ml-4 text-sm font-medium text-white">Advertising</span>
+  </div>
+  <div class="mac-content">
+    <p>Our advertising services encompass Google Ads, social media ads, and display advertising. We design and manage campaigns that maximize your ROI and drive conversions. By analyzing performance metrics, we continuously optimize your ads for better results.<br>Benefits:<br>Targeted audience reach<br>Cost-effective campaigns<br>Real-time performance tracking.</p>
+    <button class="mt-6 bg-accent text-black px-4 py-2 rounded shadow">Book Now</button>
+  </div>
+</div>
+
+<div id="service-window-Branding" class="mac-window hidden">
+  <div class="mac-header">
+    <div class="flex gap-2 items-center">
+      <span class="mac-btn mac-red" onclick="closeWindow('Branding')"></span>
+      <span class="mac-btn mac-yellow" onclick="minimizeWindow('Branding')"></span>
+      <span class="mac-btn mac-green"></span>
+    </div>
+    <span class="title ml-4 text-sm font-medium text-white">Branding & Identity</span>
+  </div>
+  <div class="mac-content">
+    <p>We help you define your brand's voice, values, and visual identity. Our branding services ensure consistency across all platforms, building trust and recognition. From logo design to brand guidelines, we create a cohesive brand image that stands out in the market.<br>Benefits:<br>Distinct brand presence<br>Enhanced customer loyalty<br>Competitive differentiation.</p>
+    <button class="mt-6 bg-accent text-black px-4 py-2 rounded shadow">Book Now</button>
+  </div>
+</div>
+
+<div id="service-window-DS" class="mac-window hidden">
+  <div class="mac-header">
+    <div class="flex gap-2 items-center">
+      <span class="mac-btn mac-red" onclick="closeWindow('DS')"></span>
+      <span class="mac-btn mac-yellow" onclick="minimizeWindow('DS')"></span>
+      <span class="mac-btn mac-green"></span>
+    </div>
+    <span class="title ml-4 text-sm font-medium text-white">AI & Automation Solutions</span>
+  </div>
+  <div class="mac-content">
+    <p>We integrate AI-driven solutions to automate repetitive tasks, analyze data, and improve decision-making processes. Our services help you stay ahead in a competitive market by enhancing efficiency and innovation. From chatbots to predictive analytics, we tailor AI tools to your business needs.<br>Benefits:<br>Increased operational efficiency<br>Data-driven insights<br>Scalable business processes</p>
+    <button class="mt-6 bg-accent text-black px-4 py-2 rounded shadow">Book Now</button>
+  </div>
+</div>
+
+<div id="service-window-AD" class="mac-window hidden">
+  <div class="mac-header">
+    <div class="flex gap-2 items-center">
+      <span class="mac-btn mac-red" onclick="closeWindow('AD')"></span>
+      <span class="mac-btn mac-yellow" onclick="minimizeWindow('AD')"></span>
+      <span class="mac-btn mac-green"></span>
+    </div>
+    <span class="title ml-4 text-sm font-medium text-white">App Development</span>
+  </div>
+  <div class="mac-content">
+    <p>Our app development team creates custom mobile applications for iOS and Android platforms. We focus on user-centric designs and seamless functionality to deliver exceptional user experiences. Whether it's a startup app or an enterprise solution, we ensure scalability and performance.<br>Benefits:<br>Cross-platform compatibility<br>User-friendly interfaces<br>Scalable solutions.</p>
+    <button class="mt-6 bg-accent text-black px-4 py-2 rounded shadow">Book Now</button>
+  </div>
+</div>
+
+<div id="service-window-SMH" class="mac-window hidden">
+  <div class="mac-header">
+    <div class="flex gap-2 items-center">
+      <span class="mac-btn mac-red" onclick="closeWindow('SMH')"></span>
+      <span class="mac-btn mac-yellow" onclick="minimizeWindow('SMH')"></span>
+      <span class="mac-btn mac-green"></span>
+    </div>
+    <span class="title ml-4 text-sm font-medium text-white">Social Media Management</span>
+  </div>
+  <div class="mac-content">
+    <p>We manage your social media profiles, create compelling content, and implement strategies to increase engagement and followers across platforms like Facebook, Instagram, and LinkedIn. Our team monitors trends and analytics to optimize your social media presence.<br>Benefits:<br>Improved brand awareness<br>Increased customer engagement<br>Consistent brand messaging</p>
+    <button class="mt-6 bg-accent text-black px-4 py-2 rounded shadow">Book Now</button>
+  </div>
+</div>
+
+<div id="service-window-LAC" class="mac-window hidden">
+  <div class="mac-header">
+    <div class="flex gap-2 items-center">
+      <span class="mac-btn mac-red" onclick="closeWindow('LAC')"></span>
+      <span class="mac-btn mac-yellow" onclick="minimizeWindow('LAC')"></span>
+      <span class="mac-btn mac-green"></span>
+    </div>
+    <span class="title ml-4 text-sm font-medium text-white">Lead Generation & Content Marketing</span>
+  </div>
+  <div class="mac-content">
+    <p>Our team develops informative and engaging content tailored to your audience. We implement lead generation tactics that capture and nurture potential customers through the sales funnel. By aligning content with user intent, we drive meaningful interactions and conversions.<br>Benefits:<br>Higher lead quality<br>Increased conversion rates<br>Enhanced customer relationships.</p>
+    <button class="mt-6 bg-accent text-black px-4 py-2 rounded shadow">Book Now</button>
+  </div>
+</div>
+
+</div>
+
+</body>
+</html>
