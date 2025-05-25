@@ -442,11 +442,13 @@ html:not(.dark) {
 /* Mac-style glass popup */
 .mac-window {
   position: fixed;
-  top: 10vh;
+  top: 5vh;
   left: 50%;
   transform: translateX(-50%);
   width: 90%;
-  max-width: 600px;
+  max-width: 95vw;
+  max-height: 85vh;
+  height: auto;
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(14px);
   border-radius: 12px;
@@ -516,7 +518,8 @@ html:not(.dark) {
 
 
 .belt-track {
-  animation: belt-loop 30s linear infinite;
+  animation: belt-loop 20s linear infinite;
+  display: flex;
 }
 
 @keyframes belt-loop {
@@ -541,23 +544,29 @@ html:not(.dark) {
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1024px) {
   header nav {
     flex-wrap: wrap;
+    justify-content: center;
     gap: 1rem;
   }
+  header .flex.items-center.gap-4 {
+    justify-content: center;
+    width: 100%;
+  }
+}
   
  /* Update mobile menu panel styling */
 #mobileMenuPanel {
   transform: translateX(100%);
   transition: transform 0.3s ease;
-  z-index: 100;
+
 }
 
 #mobileMenuPanel.show {
   transform: translateX(0);
 }
-  }
+  
   
   #themeToggle {
     order: 2;
@@ -567,7 +576,7 @@ html:not(.dark) {
 
 @media (max-width: 768px) {
   .mac-content {
-    max-height: 80vh;
+    max-height: 70vh;
   }
 }
 
@@ -587,6 +596,7 @@ html:not(.dark) {
   .belt-item {
     min-width: 140px;
     height: auto;
+    width: 33.33vw;
     margin-right: 1rem;
     flex-shrink: 0;
   }

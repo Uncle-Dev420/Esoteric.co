@@ -20,17 +20,13 @@ document.addEventListener("DOMContentLoaded", () => {
   const sceneNight = document.getElementById("sceneNight");
 
   // 📱 Mobile Menu Toggle
-  const menuBtn = document.getElementById("mobileMenuBtn");
-  const menuPanel = document.getElementById("mobileMenuPanel");
-  const closeMenu = document.getElementById("closeMenu");
+const menuPanel = document.getElementById("mobileMenuPanel");
+const openBtn = document.getElementById("mobileMenuBtn");
+const closeBtn = document.getElementById("closeMenu");
 
-  menuBtn?.addEventListener("click", () => {
-    menuPanel?.classList.remove("hidden");
-  });
+openBtn?.addEventListener("click", () => menuPanel.classList.add("show"));
+closeBtn?.addEventListener("click", () => menuPanel.classList.remove("show"));
 
-  closeMenu?.addEventListener("click", () => {
-    menuPanel?.classList.add("hidden");
-  });
 
   // 🌗 Theme Toggle Buttons
   ["themeToggleUniversal", "themeToggleMobile", "themeTogglePanel"].forEach(id => {
