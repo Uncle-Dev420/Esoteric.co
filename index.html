@@ -86,7 +86,7 @@
 
   <!-- Left Side: Logo + Brand Name -->
   <div class="flex items-center gap-2 min-w-0 overflow-hidden">
-    <div class="w-12 h-12 sm:w-16 sm:h-16 shrink-0">
+    <div class="w-10 h-10 sm:w-16 sm:h-16 shrink-0">
       <img src="assets/white logo.png" alt="Logo" class="w-full h-full object-contain dark:hidden" />
       <img src="assets/white logo.png" alt="Logo Dark" class="w-full h-full object-contain hidden dark:inline" />
     </div>
@@ -95,10 +95,6 @@
 
   <!-- Right Side: ☰ + 🌗 only in mobile -->
   <div class="flex items-center gap-3 md:hidden shrink-0">
-    <button id="mobileMenuBtn" class="w-10 h-10 flex items-center justify-center bg-white/20 dark:bg-darkAccent/40 rounded-full shadow-lg">
-      <span class="text-2xl">☰</span>
-    </button>
-
     <div id="themeToggleMobile" class="theme-slider cursor-pointer">
       <div class="toggle-track">
         <svg id="iconSunMobile" class="icon sun hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
@@ -110,6 +106,10 @@
         <div class="toggle-thumb"></div>
       </div>
     </div>
+
+    <button id="mobileMenuBtn" class="w-10 h-10 flex items-center justify-center bg-white/20 dark:bg-darkAccent/40 rounded-full shadow-lg">
+      <span class="text-2xl">☰</span>
+    </button>
   </div>
 
   <!-- Right Side (Desktop Nav Links) -->
