@@ -636,3 +636,28 @@ html:not(.dark) {
   transform: translateX(0);
 }
 
+@media (max-width: 768px) {
+  header nav {
+    padding: 0.75rem 1rem;
+  }
+
+  header .w-20, header .h-20 {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  #mobileMenuPanel {
+    width: 80vw;
+    padding-top: 5rem;
+  }
+
+  #mobileMenuPanel button#closeMenu {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+  }
+
+  #mobileMenuBtn {
+    z-index: 1001;
+  }
+}

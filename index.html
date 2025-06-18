@@ -82,10 +82,10 @@
 
   <!-- Header with logo and theme toggle -->
 <header class="fixed top-0 w-full bg-surface/80 dark:bg-darkAccent/60 backdrop-blur border-b border-lightAccent/40 dark:border-violet/50 z-50">
-  <nav class="container mx-auto px-6 py-4 flex items-center justify-between">
+  <nav class="container mx-auto px-4 py-3 flex items-center justify-between">
     <!-- Logo Group -->
     <div class="flex items-center gap-4">
-      <div class="w-20 h-20"> <!-- Reduced size -->
+      <div class="w-12 h-12 sm:w-16 sm:h-16"> 
         <img src="assets/white logo.png" alt="Logo" 
              class="w-full h-full object-contain dark:hidden" />
         <img src="assets/white logo.png" alt="Logo Dark" 
@@ -148,16 +148,14 @@
   </div>
 </div>
 
+  </header>
 <div id="mobileMenuPanel" class="fixed top-0 right-0 h-full w-2/3 bg-white dark:bg-gray-900 backdrop-blur-lg z-50 p-6 space-y-4 transform translate-x-full transition-transform">
   <button id="closeMenu" class="self-end text-2xl">✕</button>
   <a href="#services" class="block">Services</a>
   <a href="#portfolio" class="block">Work</a>
   <a href="#contact" class="block">Contact</a>
-  <div id="themeToggleUniversal" class="theme-slider cursor-pointer"></div>
+  <div id="themeTogglePanel" class="theme-slider cursor-pointer"></div>
 </div>
-
-  </header>
-
   <!-- Mobile nav -->
   <div id="themeToggleNav" class="fixed top-0 right-0 h-screen w-64 bg-surface dark:bg-darkAccent shadow-lg p-6 transform translate-x-full transition-transform duration-300 z-40">
     <div class="flex flex-col space-y-6 text-accent text-lg">
