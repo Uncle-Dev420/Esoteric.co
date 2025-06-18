@@ -207,6 +207,7 @@ html.dark .theme-slider .toggle-thumb {
   height: 100%;
   object-fit: cover;
   z-index: -20;
+  pointer-events: none;
 }
 
 /* Particle container */
