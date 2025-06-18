@@ -109,7 +109,12 @@ document.getElementById("mobileMenuBtn")?.addEventListener("click", () => {
   dualityMenu.classList.remove("hidden");
   dualityTerminal.classList.toggle("hidden", !isDark);
   dualityRadial.classList.toggle("hidden", isDark);
-  dualityVideo.src = isDark ? "assets/void-terminal.mp4" : "assets/sun-core.mp4";
+dualityVideo.pause(); 
+dualityVideo.src = isDark ? "assets/void-terminal.mp4" : "assets/sun-core.mp4";
+dualityVideo.load();
+dualityVideo.play().catch(err => {
+  console.warn("⚠️ Video play blocked:", err);
+});
 
   if (isDark && terminalText) {
     terminalText.textContent = "";
