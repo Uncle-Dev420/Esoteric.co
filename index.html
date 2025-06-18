@@ -135,16 +135,41 @@
         </div>
       </div>
     </div>
+    <button onclick="document.getElementById('mobileMenuBtn').click()" class="hidden md:block px-4 py-2 bg-accent text-black rounded-full shadow">
+  ☰ Menu
+</button>
+
   </div>
 
 </nav>
   </header>
-<div id="mobileMenuPanel" class="fixed top-0 right-0 h-full w-2/3 bg-white dark:bg-gray-900 backdrop-blur-lg z-50 p-6 space-y-4 transform translate-x-full transition-transform">
-  <button id="closeMenu" class="self-end text-2xl">✕</button>
-  <a href="#services" class="block">Services</a>
-  <a href="#portfolio" class="block">Work</a>
-  <a href="#contact" class="block">Contact</a>
-  <button class="bg-accent text-black px-6 py-2 rounded-full mt-4 hover:opacity-90">Get Started</button>
+<div id="dualityMenu" class="fixed inset-0 z-[9999] hidden text-white font-mono">
+  <!-- Dynamic Background -->
+  <video id="dualityVideo" autoplay muted loop class="absolute inset-0 w-full h-full object-cover"></video>
+  
+  <!-- Overlay -->
+  <div id="dualityOverlay" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>
+
+  <!-- Terminal Text (Night) -->
+  <div id="dualityTerminal" class="absolute top-10 left-6 right-6 hidden text-green-400 text-sm">
+    <div id="dualityTerminalText" class="whitespace-pre leading-6"></div>
+  </div>
+
+  <!-- Radial Menu (Day) -->
+  <div id="dualityRadial" class="absolute inset-0 flex items-center justify-center hidden">
+    <div class="flex flex-wrap justify-center items-center gap-6 text-center">
+      <a href="#services" class="radial-item">Services</a>
+      <a href="#portfolio" class="radial-item">Work</a>
+      <a href="#contact" class="radial-item">Contact</a>
+    </div>
+  </div>
+
+  <!-- Close Button -->
+  <button id="dualityClose" class="absolute top-6 right-6 text-2xl bg-white/10 px-4 py-2 rounded">✕</button>
+  <button id="startVoice" class="absolute bottom-6 left-6 bg-black/50 border border-lime-400 px-4 py-2 text-lime-300 rounded text-sm">
+  🎤 Start Voice
+</button>
+
 </div>
   <!-- Mobile nav -->
   <div id="themeToggleNav" class="fixed top-0 right-0 h-screen w-64 bg-surface dark:bg-darkAccent shadow-lg p-6 transform translate-x-full transition-transform duration-300 z-40">
