@@ -82,54 +82,63 @@
 
   <!-- Header with logo and theme toggle -->
 <header class="fixed top-0 w-full bg-surface/80 dark:bg-darkAccent/60 backdrop-blur border-b border-lightAccent/40 dark:border-violet/50 z-50">
-<nav class="container mx-auto px-4 py-3 flex items-center justify-between gap-4 flex-nowrap">
-    <!-- Logo Group -->
-    <div class="flex items-center gap-4 min-w-0 overflow-hidden">
-      <div class="w-12 h-12 sm:w-16 sm:h-16"> 
-        <img src="assets/white logo.png" alt="Logo" 
-             class="w-full h-full object-contain dark:hidden" />
-        <img src="assets/white logo.png" alt="Logo Dark" 
-             class="w-full h-full object-contain hidden dark:inline" />
-      </div>
-      <span class="text-2xl font-bold text-accent">Esoteric.co</span>
+<nav class="container mx-auto px-4 py-3 flex items-center justify-between gap-4">
+
+  <!-- Left Side: Logo + Brand Name -->
+  <div class="flex items-center gap-2 min-w-0 overflow-hidden">
+    <div class="w-12 h-12 sm:w-16 sm:h-16 shrink-0">
+      <img src="assets/white logo.png" alt="Logo" class="w-full h-full object-contain dark:hidden" />
+      <img src="assets/white logo.png" alt="Logo Dark" class="w-full h-full object-contain hidden dark:inline" />
     </div>
+    <span class="text-xl sm:text-2xl font-bold text-accent truncate">Esoteric.co</span>
+  </div>
 
-    <!-- Desktop Nav Links -->
-    <div class="hidden md:flex items-center gap-8 font-medium">
-      <a href="#services" class="text-accent hover:opacity-80 transition">Services</a>
-      <a href="#portfolio" class="text-accent hover:opacity-80 transition">Work</a>
-      <a href="#contact" class="text-accent hover:opacity-80 transition">Contact</a>
-      <button class="bg-accent text-black px-6 py-2 rounded-full hover:opacity-90">
-        Get Started
-      </button>
+  <!-- Right Side: ☰ + 🌗 only in mobile -->
+  <div class="flex items-center gap-3 md:hidden shrink-0">
+    <button id="mobileMenuBtn" class="w-10 h-10 flex items-center justify-center bg-white/20 dark:bg-darkAccent/40 rounded-full shadow-lg">
+      <span class="text-2xl">☰</span>
+    </button>
 
-<!-- Desktop Toggle -->
-<div class="hidden md:block">
-  <div id="themeToggleUniversal" class="theme-slider cursor-pointer">
-    <div class="toggle-track">
-      <svg id="iconSunUniversal" class="icon sun hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
-        <path fill="currentColor" d="M12 4V2M12 22v-2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2m16 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-      </svg>
-      <svg id="iconMoonUniversal" class="icon moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
-        <path fill="currentColor" d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1-8.313-12.454z"/>
-      </svg>
-      <div class="toggle-thumb"></div>
+    <div id="themeToggleMobile" class="theme-slider cursor-pointer">
+      <div class="toggle-track">
+        <svg id="iconSunMobile" class="icon sun hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M12 4V2M12 22v-2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2m16 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+        </svg>
+        <svg id="iconMoonMobile" class="icon moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+          <path fill="currentColor" d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1-8.313-12.454z"/>
+        </svg>
+        <div class="toggle-thumb"></div>
+      </div>
     </div>
   </div>
-</div>
 
+  <!-- Right Side (Desktop Nav Links) -->
+  <div class="hidden md:flex items-center gap-8 font-medium">
+    <a href="#services" class="text-accent hover:opacity-80 transition">Services</a>
+    <a href="#portfolio" class="text-accent hover:opacity-80 transition">Work</a>
+    <a href="#contact" class="text-accent hover:opacity-80 transition">Contact</a>
+    <button class="bg-accent text-black px-6 py-2 rounded-full hover:opacity-90">
+      Get Started
+    </button>
 
-  </div>
-</div>
-
-
-
-
-
+    <!-- Desktop Theme Toggle -->
+    <div class="hidden md:block">
+      <div id="themeToggleUniversal" class="theme-slider cursor-pointer">
+        <div class="toggle-track">
+          <svg id="iconSunUniversal" class="icon sun hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 4V2M12 22v-2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2m16 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+          </svg>
+          <svg id="iconMoonUniversal" class="icon moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+            <path fill="currentColor" d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1-8.313-12.454z"/>
+          </svg>
+          <div class="toggle-thumb"></div>
+        </div>
       </div>
+    </div>
+  </div>
 
+</nav>
 
-    </nav>
 
     <!-- Mobile Toggle -->
 <div class="flex items-center gap-3 md:hidden shrink-0">
