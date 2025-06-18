@@ -135,19 +135,20 @@
     </nav>
 
     <!-- Mobile Toggle -->
-<div class="block md:hidden mt-4">
-  <div id="themeToggleMobile" class="theme-slider cursor-pointer">
-    <div class="toggle-track">
-      <svg id="iconSunUniversal" class="icon sun hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
-        <path fill="currentColor" d="M12 4V2M12 22v-2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2m16 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
-      </svg>
-      <svg id="iconMoonUniversal" class="icon moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
-        <path fill="currentColor" d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1-8.313-12.454z"/>
-      </svg>
-      <div class="toggle-thumb"></div>
-    </div>
+<!-- Mobile Theme Toggle - top right -->
+<div id="themeToggleMobile" class="fixed top-4 right-4 md:hidden z-[999] theme-slider cursor-pointer">
+  <div class="toggle-track">
+    <svg id="iconSunMobile" class="icon sun hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 4V2M12 22v-2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M2 12h2m16 0h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/>
+    </svg>
+    <svg id="iconMoonMobile" class="icon moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1-8.313-12.454z"/>
+    </svg>
+    <div class="toggle-thumb"></div>
+  </div>
+</div>
 
-<div id="mobileMenuPanel" class="hidden fixed top-0 right-0 h-full w-2/3 bg-white dark:bg-gray-900 backdrop-blur-lg z-50 p-6 space-y-4">
+<div id="mobileMenuPanel" class="fixed top-0 right-0 h-full w-2/3 bg-white dark:bg-gray-900 backdrop-blur-lg z-50 p-6 space-y-4 transform translate-x-full transition-transform">
   <button id="closeMenu" class="self-end text-2xl">✕</button>
   <a href="#services" class="block">Services</a>
   <a href="#portfolio" class="block">Work</a>
