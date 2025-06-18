@@ -82,10 +82,10 @@
 
   <!-- Header with logo and theme toggle -->
 <header class="fixed top-0 w-full bg-surface/80 dark:bg-darkAccent/60 backdrop-blur border-b border-lightAccent/40 dark:border-violet/50 z-50">
-<nav class="container mx-auto px-4 py-3 flex items-center justify-between gap-4">
+<nav class="container mx-auto px-4 py-3 flex items-center gap-4">
 
   <!-- Left Side: Logo + Brand Name -->
-  <div class="flex items-center gap-2 min-w-0 overflow-hidden">
+  <div class="flex items-center gap-2 min-w-0 overflow-hidden flex-grow">
     <div class="w-10 h-10 sm:w-16 sm:h-16 shrink-0">
       <img src="assets/white logo.png" alt="Logo" class="w-full h-full object-contain dark:hidden" />
       <img src="assets/white logo.png" alt="Logo Dark" class="w-full h-full object-contain hidden dark:inline" />
@@ -94,7 +94,7 @@
   </div>
 
   <!-- Right Side: ☰ + 🌗 only in mobile -->
-  <div class="flex items-center gap-3 md:hidden shrink-0">
+  <div class="flex items-center gap-3 md:hidden shrink-0 justify-end">
     <div id="themeToggleMobile" class="theme-slider cursor-pointer">
       <div class="toggle-track">
         <svg id="iconSunMobile" class="icon sun hidden" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24">
