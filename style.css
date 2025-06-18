@@ -672,6 +672,10 @@ html:not(.dark) {
 #dualityMenu {
   transition: opacity 0.5s ease;
 }
+#dualityVideo {
+  pointer-events: none;
+  z-index: 0;
+}
 
 .radial-item {
   font-size: 1.5rem;

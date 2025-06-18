@@ -145,7 +145,15 @@
   </header>
 <div id="dualityMenu" class="fixed inset-0 z-[9999] hidden text-white font-mono">
   <!-- Dynamic Background -->
-  <video id="dualityVideo" autoplay muted loop class="absolute inset-0 w-full h-full object-cover"></video>
+<video
+  id="dualityVideo"
+  autoplay
+  muted
+  loop
+  playsinline
+  preload="auto"
+  class="absolute inset-0 w-full h-full object-cover pointer-events-none z-0">
+</video>
   
   <!-- Overlay -->
   <div id="dualityOverlay" class="absolute inset-0 bg-black/60 backdrop-blur-sm"></div>

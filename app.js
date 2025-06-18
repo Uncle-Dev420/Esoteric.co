@@ -110,7 +110,20 @@ document.getElementById("mobileMenuBtn")?.addEventListener("click", () => {
   dualityTerminal.classList.toggle("hidden", !isDark);
   dualityRadial.classList.toggle("hidden", isDark);
 dualityVideo.pause(); 
-dualityVideo.src = isDark ? "assets/void-terminal.mp4" : "assets/sun-core.mp4";
+if (dualityVideo) {
+  dualityVideo.pause();
+  dualityVideo.removeAttribute("src");
+  dualityVideo.load();
+
+  // Delay setting source to ensure DOM is ready
+  setTimeout(() => {
+    dualityVideo.src = isDark ? "assets/void-terminal.mp4" : "assets/sun-core.mp4";
+    dualityVideo.load();
+    dualityVideo.play().catch(err => {
+      console.warn("⚠️ Video autoplay failed:", err);
+    });
+  }, 150); // ~150ms gives time for layout to settle
+}
 dualityVideo.load();
 dualityVideo.play().catch(err => {
   console.warn("⚠️ Video play blocked:", err);
